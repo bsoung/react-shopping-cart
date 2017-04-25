@@ -1,12 +1,12 @@
 //this config will tell Webpack to start bundling our app at index.js.
 
-const HtmlPlugin = require('html-webpack-plugin')
 module.exports = {
   // Tell webpack to start bundling our app at app/index.js
-  entry: './app',
+  entry: './src/index.js',
   // Output our app to the dist/ directory
   output: {
-    filename: 'public/build/bundle.js'
+    filename: 'public/build/bundle.js',
+    sourceMapFilename: 'public/build/bundle.map'
   },
   // Emit source maps so we can debug our code in the browser
   devtool: 'source-map',
@@ -30,8 +30,5 @@ module.exports = {
     // as a template.
     // Check out https://github.com/jantimon/html-webpack-plugin
     // for the full list of options.
-    new HtmlPlugin({
-      template: 'app/index.html'
-    })
   ]
 }
