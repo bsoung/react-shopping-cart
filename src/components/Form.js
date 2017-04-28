@@ -77,15 +77,23 @@ export default class Form extends Component {
 
 	onSubmit(e) {
 		e.preventDefault();
-
+		
+		let entry = e.target.text.value;
 		let copy = [...this.state.list];
-		copy.push(e.target.text.value);
 
-		this.setState({
-			list: copy
-		})
+		if (copy.indexOf(entry) === -1) {
+			copy.push(e.target.text.value);
 
-		this.state.currentWord = '';
+			this.setState({
+				list: copy
+			});
+
+			this.state.currentWord = '';
+
+		} else {
+
+			alert('You already have this item in your list!');
+		}
 	}
 
 	onChange(e) {
@@ -96,35 +104,45 @@ export default class Form extends Component {
 
 
 	render() {
-		console.log(this.state.currentWord)
 		const { list, editFlag, deleteFlag } = this.state;
 
 		return (
 			<div>
 				{
-					deleteFlag === 0 ? <button onClick={this.setDeleteFlag.bind(this)}>Delete</button> : <button onClick={this.setDeleteFlag.bind(this)}>Done</button>
+					(deleteFlag === 0) ? 
+					<button onClick={this.setDeleteFlag.bind(this)}>Delete</button> : 
+					<button onClick={this.setDeleteFlag.bind(this)}>Done</button>
 				}
 				{
-					deleteFlag === 0 ? '' : <button onClick={this.onDeleteAll.bind(this)}>Delete All</button>
+					(deleteFlag === 0) ? 
+					'' : 
+					<button onClick={this.onDeleteAll.bind(this)}>Delete All</button>
 				}
 
 
 				{
-					editFlag === 0 ? <button onClick={this.setEditFlag.bind(this)}>Edit</button> : <button onClick={this.setEditFlag.bind(this)}>Done</button>
+					(editFlag === 0) ? 
+					<button onClick={this.setEditFlag.bind(this)}>Edit</button> : 
+					<button onClick={this.setEditFlag.bind(this)}>Done</button>
 				}
 				
 				<form onSubmit={this.onSubmit.bind(this)}>
-					<input value={this.state.currentWord} type="text" placeholder="hello" name="text" onChange={this.onChange.bind(this)}>
+					<input 
+						value={this.state.currentWord} 
+						type="text" 
+						placeholder="hello" 
+						name="text" 
+						onChange={this.onChange.bind(this)}>
 					</input>
 				</form>
-				<List 
-							list={list} 
-							editFlag={editFlag}
-							deleteFlag={deleteFlag}
-							onDelete={this.onDelete.bind(this)} 
-							onEdit={this.onEdit.bind(this)}
 
-							/>
+				<List 
+						list={list} 
+						editFlag={editFlag}
+						deleteFlag={deleteFlag}
+						onDelete={this.onDelete.bind(this)} 
+						onEdit={this.onEdit.bind(this)}
+						/>
 			</div>
 		)
 	}

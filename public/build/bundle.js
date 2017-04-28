@@ -9759,14 +9759,21 @@ var Form = function (_Component) {
 		value: function onSubmit(e) {
 			e.preventDefault();
 
+			var entry = e.target.text.value;
 			var copy = [].concat(_toConsumableArray(this.state.list));
-			copy.push(e.target.text.value);
 
-			this.setState({
-				list: copy
-			});
+			if (copy.indexOf(entry) === -1) {
+				copy.push(e.target.text.value);
 
-			this.state.currentWord = '';
+				this.setState({
+					list: copy
+				});
+
+				this.state.currentWord = '';
+			} else {
+
+				alert('You already have this item in your list!');
+			}
 		}
 	}, {
 		key: 'onChange',
@@ -9778,7 +9785,6 @@ var Form = function (_Component) {
 	}, {
 		key: 'render',
 		value: function render() {
-			console.log(this.state.currentWord);
 			var _state = this.state,
 			    list = _state.list,
 			    editFlag = _state.editFlag,
@@ -9814,7 +9820,12 @@ var Form = function (_Component) {
 				_react2.default.createElement(
 					'form',
 					{ onSubmit: this.onSubmit.bind(this) },
-					_react2.default.createElement('input', { value: this.state.currentWord, type: 'text', placeholder: 'hello', name: 'text', onChange: this.onChange.bind(this) })
+					_react2.default.createElement('input', {
+						value: this.state.currentWord,
+						type: 'text',
+						placeholder: 'hello',
+						name: 'text',
+						onChange: this.onChange.bind(this) })
 				),
 				_react2.default.createElement(_List2.default, {
 					list: list,
@@ -9822,7 +9833,6 @@ var Form = function (_Component) {
 					deleteFlag: deleteFlag,
 					onDelete: this.onDelete.bind(this),
 					onEdit: this.onEdit.bind(this)
-
 				})
 			);
 		}
