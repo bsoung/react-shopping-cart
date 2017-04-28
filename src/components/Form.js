@@ -14,30 +14,26 @@ export default class Form extends Component {
 	}
 
 	setDeleteFlag() {
-		let self = this;
-
 		if (this.state.deleteFlag === 0) {
-			self.setState({
+			this.setState({
 				deleteFlag: 1,
 				editFlag: 0
 			});
 		} else {
-			self.setState({
+			this.setState({
 				deleteFlag: 0
 			});
 		}
 	}
 
 	setEditFlag() {
-		let self = this;
-
 		if (this.state.editFlag === 0) {
-			self.setState({
+			this.setState({
 				editFlag: 1,
 				deleteFlag: 0
 			});
 		} else {
-			self.setState({
+			this.setState({
 				editFlag: 0
 			})
 		}
@@ -77,7 +73,7 @@ export default class Form extends Component {
 
 	onSubmit(e) {
 		e.preventDefault();
-		
+
 		let entry = e.target.text.value;
 		let copy = [...this.state.list];
 
@@ -130,7 +126,7 @@ export default class Form extends Component {
 					<input 
 						value={this.state.currentWord} 
 						type="text" 
-						placeholder="hello" 
+						placeholder="enter something" 
 						name="text" 
 						onChange={this.onChange.bind(this)}>
 					</input>

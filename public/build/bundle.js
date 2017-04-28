@@ -9690,15 +9690,13 @@ var Form = function (_Component) {
 	_createClass(Form, [{
 		key: 'setDeleteFlag',
 		value: function setDeleteFlag() {
-			var self = this;
-
 			if (this.state.deleteFlag === 0) {
-				self.setState({
+				this.setState({
 					deleteFlag: 1,
 					editFlag: 0
 				});
 			} else {
-				self.setState({
+				this.setState({
 					deleteFlag: 0
 				});
 			}
@@ -9706,15 +9704,13 @@ var Form = function (_Component) {
 	}, {
 		key: 'setEditFlag',
 		value: function setEditFlag() {
-			var self = this;
-
 			if (this.state.editFlag === 0) {
-				self.setState({
+				this.setState({
 					editFlag: 1,
 					deleteFlag: 0
 				});
 			} else {
-				self.setState({
+				this.setState({
 					editFlag: 0
 				});
 			}
@@ -9823,7 +9819,7 @@ var Form = function (_Component) {
 					_react2.default.createElement('input', {
 						value: this.state.currentWord,
 						type: 'text',
-						placeholder: 'hello',
+						placeholder: 'enter something',
 						name: 'text',
 						onChange: this.onChange.bind(this) })
 				),
