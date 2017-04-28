@@ -1,13 +1,23 @@
 import React from 'react';
 import Form from './Form';
-import List from './List';
 
 export default (props) => {
-	console.log(props.text);
 	return (
 		<div>
-			<Form onSubmit={props.onSubmit} />
-			<List list={props.list} />
+			<div>Fruits</div>
+			<Form />
+
+			<div>Veggies</div>
+			<Form />
+
+			<div>Dairy</div>
+			<Form />
+
+			<div>Protein</div>
+			<Form />
+
+			<div>Dessert</div>
+			<Form />
 		</div>
 	)
 }
